@@ -192,8 +192,13 @@ def setup(args):
     Create configs and perform basic setups.
     """
     cfg = get_cfg()
+    args.config_file='configs/BlendMask/R_50_1x.yaml'
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
+    # 更改配置参数
+    cfg.DATASETS.TRAIN = ("glass_fiber_train",) # 训练数据集名称
+    cfg.DATASETS.TEST = ("glass_fiber_val",)
+    cfg.SOLVER.IMS_PER_BATCH = 2
     cfg.freeze()
     default_setup(cfg, args)
 

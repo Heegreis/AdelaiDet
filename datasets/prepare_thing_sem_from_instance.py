@@ -114,11 +114,15 @@ if __name__ == "__main__":
         thing_id_to_contiguous_id = _get_coco_instances_meta()["thing_dataset_id_to_contiguous_id"]
         split_name = 'train2017'
         annotation_name = "annotations/instances_{}.json"
+    elif args.dataset_name == "glass_fiber":
+        thing_id_to_contiguous_id = _get_coco_instances_meta()["thing_dataset_id_to_contiguous_id"]
+        split_name = 'train'
+        annotation_name = "annotations/instances_{}.json"
     else:
         thing_id_to_contiguous_id = {1: 0}
         split_name = 'train'
         annotation_name = "annotations/{}_person.json"
-    for s in ["train2017"]:
+    for s in ["train"]:
         create_coco_semantic_from_instance(
             os.path.join(dataset_dir, "annotations/instances_{}.json".format(s)),
             os.path.join(dataset_dir, "thing_{}".format(s)),

@@ -30,6 +30,19 @@ metadata_text = {
     "thing_classes": ["text"]
 }
 
+DATASET_NAME = 'glass_fiber'
+TRAIN_PATH = os.path.join(DATASET_NAME, 'image/train')
+VAL_PATH = os.path.join(DATASET_NAME, 'image/train')
+TRAIN_JSON = os.path.join(DATASET_NAME, 'annotations', 'instances_train.json')
+VAL_JSON = os.path.join(DATASET_NAME, 'annotations', 'instances_train.json')
+_PREDEFINED_SPLITS_CUSTOM = {
+    "glass_fiber_train": (TRAIN_PATH, TRAIN_JSON),
+    "glass_fiber_val": (VAL_PATH, VAL_JSON),
+}
+
+metadata_custom = {
+    "thing_classes": ["feather", "ring", "wire", "attach"]
+}
 
 def register_all_coco(root="datasets"):
     for key, (image_root, json_file) in _PREDEFINED_SPLITS_PIC.items():
@@ -45,6 +58,14 @@ def register_all_coco(root="datasets"):
         register_text_instances(
             key,
             metadata_text,
+            os.path.join(root, json_file) if "://" not in json_file else json_file,
+            os.path.join(root, image_root),
+        )
+    for key, (image_root, json_file) in _PREDEFINED_SPLITS_CUSTOM.items():
+        # Assume pre-defined datasets live in `./datasets`.
+        register_coco_instances(
+            key,
+            metadata_custom,
             os.path.join(root, json_file) if "://" not in json_file else json_file,
             os.path.join(root, image_root),
         )
