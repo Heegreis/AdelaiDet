@@ -16,38 +16,7 @@ from adet.config import get_cfg
 # constants
 WINDOW_NAME = "COCO detections"
 
-from detectron2.data import MetadataCatalog, DatasetCatalog
-from detectron2.data.datasets.coco import load_coco_json
-
-
-#声明类别，尽量保持
-CLASS_NAMES =["background", "feather", "ring", "wire", "attach"]#如果没有标注background类,就不要写了，要不然后面提取报错
-
-DATASET_ROOT = 'datasets/glass_fiber'
-ANN_ROOT = os.path.join(DATASET_ROOT, 'annotations')
-
-TRAIN_PATH = os.path.join(DATASET_ROOT, 'train')
-VAL_PATH = os.path.join(DATASET_ROOT, 'train')
-
-TRAIN_JSON = os.path.join(ANN_ROOT, 'instances_train.json')
-VAL_JSON = os.path.join(ANN_ROOT, 'instances_train.json')
-
-# 注册数据集和元数据
-def plain_register_dataset():
-    #训练集
-    DatasetCatalog.register("glass_fiber_train", lambda: load_coco_json(TRAIN_JSON, TRAIN_PATH))
-    MetadataCatalog.get("glass_fiber_train").set(thing_classes=CLASS_NAMES,  # 可以选择开启，但是不能显示中文，这里需要注意，中文的话最好关闭
-                                                    evaluator_type='coco', # 指定评估方式
-                                                    json_file=TRAIN_JSON,
-                                                    image_root=TRAIN_PATH)
-
-
-    #验证/测试集
-    DatasetCatalog.register("glass_fiber_val", lambda: load_coco_json(VAL_JSON, VAL_PATH))
-    MetadataCatalog.get("glass_fiber_val").set(thing_classes=CLASS_NAMES, # 可以选择开启，但是不能显示中文，这里需要注意，中文的话最好关闭
-                                                evaluator_type='coco', # 指定评估方式
-                                                json_file=VAL_JSON,
-                                                image_root=VAL_PATH)
+from adet.data.dataset_mapper import DatasetMapperWithBasis
 
 
 def setup_cfg(args):
@@ -104,8 +73,6 @@ if __name__ == "__main__":
     args = get_parser().parse_args()
     logger = setup_logger()
     logger.info("Arguments: " + str(args))
-
-    plain_register_dataset()
 
     cfg = setup_cfg(args)
 
