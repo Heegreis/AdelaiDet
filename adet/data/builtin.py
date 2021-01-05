@@ -30,14 +30,9 @@ metadata_text = {
     "thing_classes": ["text"]
 }
 
-DATASET_NAME = 'glass_fiber'
-TRAIN_PATH = os.path.join(DATASET_NAME, 'image/train')
-VAL_PATH = os.path.join(DATASET_NAME, 'image/train')
-TRAIN_JSON = os.path.join(DATASET_NAME, 'annotations', 'instances_train.json')
-VAL_JSON = os.path.join(DATASET_NAME, 'annotations', 'instances_train.json')
 _PREDEFINED_SPLITS_CUSTOM = {
-    "glass_fiber_train": (TRAIN_PATH, TRAIN_JSON),
-    "glass_fiber_val": (VAL_PATH, VAL_JSON),
+    "glass_fiber_train": ('glass_fiber/image/train', 'glass_fiber/annotations/instances_train.json'),
+    "glass_fiber_val": ('glass_fiber/image/train', 'glass_fiber/annotations/instances_train.json'),
 }
 
 metadata_custom = {

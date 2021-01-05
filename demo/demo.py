@@ -79,6 +79,7 @@ if __name__ == "__main__":
     demo = VisualizationDemo(cfg)
 
     if args.input:
+        totle_start_time = time.time()
         if os.path.isdir(args.input[0]):
             args.input = [os.path.join(args.input[0], fname) for fname in os.listdir(args.input[0])]
         elif len(args.input) == 1:
@@ -155,5 +156,5 @@ if __name__ == "__main__":
         else:
             cv2.destroyAllWindows()
 
-    totle_time = time.time() - start_time
+    totle_time = time.time() - totle_start_time
     print(f'totle_time: {totle_time}')

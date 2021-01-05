@@ -50,7 +50,6 @@ dist/
 /export
 eval.sh
 /datasets/glass_fiber*
-/training_dir
 
 demo/performance.py
 demo/demo2.py
