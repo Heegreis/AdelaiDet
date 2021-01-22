@@ -23,7 +23,8 @@ def setup(args):
     if args.config_file:
         cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
-    cfg.DATASETS.TRAIN = ("glass_fiber_train",) # 训练数据集名称
+    cfg.DATASETS.TRAIN = ("glass_fiber_train",) # vis annotation
+    # cfg.DATASETS.TRAIN = ("glass_fiber_val",) # vis annotation
     cfg.DATASETS.TEST = ("glass_fiber_val",)
     cfg.freeze()
     return cfg

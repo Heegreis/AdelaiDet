@@ -198,6 +198,7 @@ def setup(args):
     # 更改配置参数
     cfg.DATASETS.TRAIN = ("glass_fiber_train",) # 训练数据集名称
     cfg.DATASETS.TEST = ("glass_fiber_val",)
+    # cfg.SOLVER.MAX_ITER = 180000
     cfg.freeze()
     default_setup(cfg, args)
 

@@ -32,7 +32,7 @@ metadata_text = {
 
 _PREDEFINED_SPLITS_CUSTOM = {
     "glass_fiber_train": ('glass_fiber/image/train', 'glass_fiber/annotations/instances_train.json'),
-    "glass_fiber_val": ('glass_fiber/image/train', 'glass_fiber/annotations/instances_train.json'),
+    "glass_fiber_val": ('glass_fiber/image/val', 'glass_fiber/annotations/instances_val.json'),
 }
 
 metadata_custom = {
